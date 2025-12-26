@@ -14,7 +14,7 @@ export function Admin(props: any) {
         <div className="container mx-auto">
             <div className="mt-5 flex justify-between mx-auto">
                 <h1 className="text-4xl mb-4">Hi Rowan!</h1>
-                <Button onClick={handleLogout} variant={"destructive"} className="">
+                <Button onClick={handleLogout} variant={"destructive"}>
                     Sign Out
                 </Button>
             </div>
