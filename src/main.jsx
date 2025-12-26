@@ -4,7 +4,7 @@ import './index.css'
 import { ThemeProvider } from "./components/ui/theme-provider";
 import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Admin } from './Admin';
+import { AdminLogin } from './AdminLogin';
 import Navbar from './components/ui/navbar';
 
 createRoot(document.getElementById('root')).render(
@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')).render(
 
                 <Routes>
                     <Route path="/" element={<App />} />
-                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin" element={<AdminLogin />} />
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>
