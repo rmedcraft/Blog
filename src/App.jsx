@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Navbar from "./components/ui/navbar";
 
 export default function App() {
     return (
         <div >
-            <h1 className="text-3xlxl underline text-white w-screen text-center">
-                Hello world!
-            </h1>
+            <div className="relative w-full">
+                <Navbar />
+            </div>
             <div className="container mx-auto p-8">
                 <Card className="p-6">
                     <h1 className="text-2xl font-bold mb-4">Vite + shadcn/ui</h1>
