@@ -1,19 +1,11 @@
-// import Navbar from "./components/ui/navbar";
-
-// export function Admin() {
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }
-
 import "./index.css";
 import { useState, useEffect, SetStateAction, Dispatch } from "react";
 import { createClient, EmailOtpType, MobileOtpType, Session } from "@supabase/supabase-js";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Admin } from "./Admin";
+import { toast } from "sonner";
+import { Toaster } from "./components/ui/sonner";
 
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
 
@@ -78,9 +70,11 @@ export function AdminLogin() {
             }
         });
         if (error) {
-            alert(error.error_description || error.message);
+            toast.error("Error:", { description: error.error_description || error.message })
         } else {
-            alert("Check your email for the login link!");
+            toast.success("Success!", {
+                description: "Check your email for the login link!"
+            })
         }
         setLoading(false);
     };
@@ -139,16 +133,16 @@ export function AdminLogin() {
             <div className="mt-5 w-2/5 mx-auto my-auto text-center">
                 <h1 className="text-6xl mb-4">Admin Login</h1>
                 <p>Sign in via magic link with your email below</p>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleLogin} className="flex align-middle my-4 mx-auto justify-center gap-3">
                     <Input
                         type="email"
                         placeholder="Your email"
                         value={email}
                         required={true}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="my-4 w-2/5 mx-auto"
+                        className=" w-2/5"
                     />
-                    <Button disabled={loading}>
+                    <Button disabled={loading} className="w-1/5">
                         {loading ? <span>Loading</span> : <span>Send magic link</span>}
                     </Button>
                 </form>

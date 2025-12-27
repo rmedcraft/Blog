@@ -6,11 +6,14 @@ import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AdminLogin } from './AdminLogin';
 import Navbar from './components/ui/navbar';
+import { Toaster } from './components/ui/sonner';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
             <BrowserRouter>
+                <Toaster />
+
                 <div className="sticky top-0 w-full">
                     <Navbar />
                 </div>
