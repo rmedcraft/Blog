@@ -10,7 +10,9 @@ export default function Navbar(props: any) {
             )}
         >
             <div className="flex h-16 items-center justify-between gap-4">
-                <ModeToggle></ModeToggle>
+                <div className="container mx-auto">
+                    <ModeToggle></ModeToggle>
+                </div>
             </div>
 
         </header>

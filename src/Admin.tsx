@@ -1,4 +1,5 @@
 
+import { redirect } from "react-router-dom";
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
 
@@ -12,8 +13,11 @@ export function Admin(props: any) {
 
     return (
         <div className="container mx-auto">
-            <div className="mt-5 flex justify-between mx-auto">
+            <div className="mt-5 flex  mx-auto">
                 <h1 className="text-4xl mb-4">Hi Rowan!</h1>
+                <Button className="ms-auto me-4" onClick={() => window.location.assign(window.location.origin)}>
+                    Return to Blog
+                </Button>
                 <Button onClick={handleLogout} variant={"destructive"}>
                     Sign Out
                 </Button>
