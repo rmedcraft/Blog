@@ -6,6 +6,7 @@ import { Input } from "./components/ui/input";
 import { Admin } from "./Admin";
 import { toast } from "sonner";
 import { Toaster } from "./components/ui/sonner";
+import { FaChevronLeft } from "react-icons/fa6";
 
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
 
@@ -130,10 +131,11 @@ export function AdminLogin() {
     // Show login form
     return (
         <div className="container mx-auto">
-            <div className="mt-5 w-2/5 mx-auto my-auto text-center">
+            <div className="mt-5 w-2/5 mx-auto my-auto ">
+
                 <h1 className="text-6xl mb-4">Admin Login</h1>
                 <p>Sign in via magic link with your email below</p>
-                <form onSubmit={handleLogin} className="flex align-middle my-4 mx-auto justify-center gap-3">
+                <form onSubmit={handleLogin} className="flex align-middle my-4 justify-start gap-3">
                     <Input
                         type="email"
                         placeholder="Your email"
@@ -146,6 +148,9 @@ export function AdminLogin() {
                         {loading ? <span>Loading</span> : <span>Send magic link</span>}
                     </Button>
                 </form>
+                <Button variant={"outline"} className="p-2" onClick={() => { window.location.assign(window.location.origin) }}>
+                    Back
+                </Button>
             </div>
         </div>
     );

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { FiCoffee, FiGithub } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa6";
+import { Preview } from "./Preview";
 
 export default function App() {
     // https://bobbyhadz.com/blog/react-open-link-in-new-tab    
@@ -31,6 +32,12 @@ export default function App() {
                     </div>
                 </div>
                 <Separator />
+                <Preview />
+                <Preview />
+                <Preview />
+                <Preview />
+                <Preview />
+                <Preview />
             </div>
         </div>
     )
