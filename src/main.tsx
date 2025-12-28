@@ -8,7 +8,7 @@ import { AdminLogin } from './AdminLogin';
 import Navbar from './components/ui/navbar';
 import { Toaster } from './components/ui/sonner';
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root') as any).render(
     <StrictMode>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
             <BrowserRouter>

@@ -2,13 +2,26 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { FiCoffee, FiGithub } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa6";
-import { Preview } from "./Preview";
+import { Preview, PreviewProps } from "./Preview";
 
 export default function App() {
     // https://bobbyhadz.com/blog/react-open-link-in-new-tab    
-    const openNewTab = (url) => {
+    const openNewTab = (url: string) => {
         window.open(url, '_blank', 'noopener,noreferrer')
     }
+
+    const postList: PreviewProps[] = [
+        {
+            title: "lorem ipsum",
+            description: "stuff I'm writing idk",
+            date: "12/12/12"
+        },
+        {
+            title: "lorem ipsum 2",
+            description: "stuff I'm writing idk but again",
+            date: "12/12/14"
+        }
+    ]
 
     return (
         <div>
@@ -32,12 +45,9 @@ export default function App() {
                     </div>
                 </div>
                 <Separator />
-                <Preview />
-                <Preview />
-                <Preview />
-                <Preview />
-                <Preview />
-                <Preview />
+                {postList.map((post) => {
+                    return <Preview title={post.title} description={post.description} date={post.date} />
+                })}
             </div>
         </div>
     )
