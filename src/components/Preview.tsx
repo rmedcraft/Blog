@@ -4,7 +4,8 @@ import { Separator } from "./ui/separator";
 import { Post } from "@/App";
 
 export function Preview(props: Post) {
-    const date = new Date(props.created_at)
+    const dateNum = Date.parse(props.created_at)
+    const date = new Date(dateNum)
 
     return (
         <>
