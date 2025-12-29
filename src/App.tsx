@@ -5,7 +5,6 @@ import { FaLinkedin } from "react-icons/fa6";
 import { Preview } from "./components/Preview";
 import { useEffect, useState } from "react";
 
-import { Database } from '../database.types'
 import { Spinner } from "./components/ui/spinner";
 
 import { supabase, Post } from "./main";

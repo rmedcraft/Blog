@@ -2,10 +2,10 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Post } from "@/main";
+import { dateToStr, timestamptzToDate } from "@/utils/dateUtils";
 
 export function Preview(props: Post) {
-    const dateNum = Date.parse(props.created_at)
-    const date = new Date(dateNum)
+    const date = timestamptzToDate(props.created_at)
 
     return (
         <>
@@ -15,7 +15,7 @@ export function Preview(props: Post) {
                     <h1 className="text-3xl text-bold text-foreground align-text-bottom">
                         {props.title}
                     </h1>
-                    <h1 className="text-muted-foreground pt-1">{`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}</h1>
+                    <h1 className="text-muted-foreground pt-1">{dateToStr(date)}</h1>
                 </div>
 
                 {/* tags here when we have tags */}

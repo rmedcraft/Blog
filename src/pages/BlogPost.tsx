@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
 export function BlogPost() {
+    // get the link parameter, i.e everything after the last slash. The variable name has to be the same as in
     const { postLink } = useParams();
 
     const [post, setPost] = useState<Post>()
