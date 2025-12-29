@@ -4,8 +4,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Admin } from "./Admin";
 import { toast } from "sonner";
-
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
+import { supabase } from "@/main";
 
 export function AdminLogin() {
     const [loading, setLoading] = useState(false);

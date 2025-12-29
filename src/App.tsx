@@ -4,17 +4,11 @@ import { FiCoffee, FiGithub } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa6";
 import { Preview } from "./components/Preview";
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 
 import { Database } from '../database.types'
 import { Spinner } from "./components/ui/spinner";
 
-const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
-
-// Indexed access types: https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
-export type Post = Database['public']['Tables']['posts']['Row']
-type NewPost = Database['public']['Tables']['posts']['Insert']
-type UpdatePost = Database['public']['Tables']['posts']['Update']
+import { supabase, Post } from "./main";
 
 export default function App() {
     // https://bobbyhadz.com/blog/react-open-link-in-new-tab    

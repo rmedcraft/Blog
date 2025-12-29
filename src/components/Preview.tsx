@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Post } from "@/App";
+import { Post } from "@/main";
 
 export function Preview(props: Post) {
     const dateNum = Date.parse(props.created_at)

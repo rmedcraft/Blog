@@ -8,6 +8,16 @@ import { AdminLogin } from './pages/AdminLogin';
 import Navbar from './components/ui/navbar';
 import { Toaster } from './components/ui/sonner';
 import { BlogPost } from './pages/BlogPost';
+import { createClient } from '@supabase/supabase-js';
+import { Database } from 'database.types';
+
+export const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
+
+// Indexed access types: https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
+export type Post = Database['public']['Tables']['posts']['Row']
+export type NewPost = Database['public']['Tables']['posts']['Insert']
+export type UpdatePost = Database['public']['Tables']['posts']['Update']
+
 
 createRoot(document.getElementById('root') as any).render(
     <StrictMode>
@@ -22,9 +32,9 @@ createRoot(document.getElementById('root') as any).render(
                 <Routes>
                     <Route path="/" element={<App />} />
                     <Route path="/admin" element={<AdminLogin />} />
-                    <Route path="/:post" element={<BlogPost />} />
+                    <Route path="/:postLink" element={<BlogPost />} />
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>
-    </StrictMode>,
+    </StrictMode >
 )
