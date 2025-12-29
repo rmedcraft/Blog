@@ -6,8 +6,17 @@ import { Preview } from "./components/Preview";
 import { useEffect, useState } from "react";
 
 import { Spinner } from "./components/ui/spinner";
+import { createClient } from "@supabase/supabase-js";
+import { Database } from "database.types";
 
-import { supabase, Post } from "./main";
+
+
+export const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
+
+// Indexed access types: https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
+export type Post = Database['public']['Tables']['posts']['Row']
+export type NewPost = Database['public']['Tables']['posts']['Insert']
+export type UpdatePost = Database['public']['Tables']['posts']['Update']
 
 export default function App() {
     // https://bobbyhadz.com/blog/react-open-link-in-new-tab    

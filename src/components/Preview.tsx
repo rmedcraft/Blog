@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Post } from "@/main";
+import { Post } from "@/App";
 import { dateToStr, timestamptzToDate } from "@/utils/dateUtils";
 
 export function Preview(props: Post) {
@@ -9,7 +9,7 @@ export function Preview(props: Post) {
 
     return (
         <>
-            <div className="w-4/5 mx-auto my-10">
+            <div className="w-5/6 mx-auto my-10">
                 {/* title & date */}
                 <div className="flex justify-between gap-3 items-start mb-4">
                     <h1 className="text-3xl text-bold text-foreground align-text-bottom">

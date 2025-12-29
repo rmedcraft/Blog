@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Admin } from "./Admin";
 import { toast } from "sonner";
-import { supabase } from "@/main";
+import { supabase } from "@/App";
 
 export function AdminLogin() {
     const [loading, setLoading] = useState(false);

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { supabase, Post } from "@/main"
+import { supabase, Post } from "@/App"
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -26,6 +26,7 @@ export function BlogPost() {
 
         if (!data) {
             // redirect to 404 page
+            window.location.assign(window.location.origin)
             return
         }
 
