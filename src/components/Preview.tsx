@@ -1,16 +1,11 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import { Post } from "@/App";
 
-export interface PreviewProps {
-    title: string,
-    date: string,
-    description: string,
-    link?: string
-    // tags: string[]
-}
+export function Preview(props: Post) {
+    const date = new Date(props.created_at)
 
-export function Preview(props: PreviewProps) {
     return (
         <>
             <div className="w-4/5 mx-auto my-10">
@@ -19,7 +14,7 @@ export function Preview(props: PreviewProps) {
                     <h1 className="text-3xl text-bold text-foreground align-text-bottom">
                         {props.title}
                     </h1>
-                    <h1 className="text-muted-foreground pt-1">{props.date}</h1>
+                    <h1 className="text-muted-foreground pt-1">{`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}</h1>
                 </div>
 
                 {/* tags here when we have tags */}

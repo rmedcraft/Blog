@@ -4,9 +4,10 @@ import './index.css'
 import { ThemeProvider } from "./components/ui/theme-provider";
 import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AdminLogin } from './AdminLogin';
+import { AdminLogin } from './pages/AdminLogin';
 import Navbar from './components/ui/navbar';
 import { Toaster } from './components/ui/sonner';
+import { BlogPost } from './pages/BlogPost';
 
 createRoot(document.getElementById('root') as any).render(
     <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root') as any).render(
                 <Routes>
                     <Route path="/" element={<App />} />
                     <Route path="/admin" element={<AdminLogin />} />
+                    <Route path="/:post" element={<BlogPost />} />
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>

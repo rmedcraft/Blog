@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { FiCoffee, FiGithub } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa6";
-import { Preview, PreviewProps } from "./components/Preview";
+import { Preview } from "./components/Preview";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
@@ -11,7 +11,8 @@ import { Spinner } from "./components/ui/spinner";
 
 const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
 
-type Post = Database['public']['Tables']['posts']['Row']
+// Indexed access types: https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
+export type Post = Database['public']['Tables']['posts']['Row']
 type NewPost = Database['public']['Tables']['posts']['Insert']
 type UpdatePost = Database['public']['Tables']['posts']['Update']
 
@@ -70,8 +71,8 @@ export default function App() {
                 }
 
                 {/* show posts once done loading */}
-                {posts.map((post: any) => {
-                    return <Preview key={post.id} title={post.title} description={post.description} date={post.date} link={post.link} />
+                {posts.length > 0 && posts.map((post: Post) => {
+                    return <Preview key={post.link} {...post} />
                 })}
             </div>
         </div>

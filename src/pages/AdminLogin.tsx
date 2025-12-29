@@ -1,12 +1,9 @@
-import "./index.css";
 import { useState, useEffect, SetStateAction, Dispatch } from "react";
 import { createClient, EmailOtpType, MobileOtpType, Session } from "@supabase/supabase-js";
-import { Button } from "./components/ui/button";
-import { Input } from "./components/ui/input";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
 import { Admin } from "./Admin";
 import { toast } from "sonner";
-import { Toaster } from "./components/ui/sonner";
-import { FaChevronLeft } from "react-icons/fa6";
 
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
 
