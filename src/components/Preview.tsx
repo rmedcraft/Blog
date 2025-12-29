@@ -1,11 +1,12 @@
 import { FaArrowRight } from "react-icons/fa6";
-import { Button } from "./components/ui/button";
-import { Separator } from "./components/ui/separator";
+import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
 
 export interface PreviewProps {
     title: string,
     date: string,
     description: string,
+    link?: string
     // tags: string[]
 }
 
@@ -25,12 +26,12 @@ export function Preview(props: PreviewProps) {
 
                 {/* description */}
                 <p>{props.description}</p>
+
                 {/* read more */}
-                <Button variant={"link"} className="p-0 mt-1">
+                <Button variant={"link"} className="p-0 mt-1" onClick={() => window.location.assign(`${window.location.origin}/${props.link ?? encodeURI(props.title)}`)}>
                     Read More
                     <FaArrowRight />
                 </Button>
-
             </div>
             <Separator />
         </>

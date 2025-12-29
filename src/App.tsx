@@ -2,7 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { FiCoffee, FiGithub } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa6";
-import { Preview, PreviewProps } from "./Preview";
+import { Preview, PreviewProps } from "./components/Preview";
+import { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+import { Database } from '../database.types'
+import { Spinner } from "./components/ui/spinner";
+
+const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
+
+type Post = Database['public']['Tables']['posts']['Row']
+type NewPost = Database['public']['Tables']['posts']['Insert']
+type UpdatePost = Database['public']['Tables']['posts']['Update']
 
 export default function App() {
     // https://bobbyhadz.com/blog/react-open-link-in-new-tab    
@@ -10,18 +21,25 @@ export default function App() {
         window.open(url, '_blank', 'noopener,noreferrer')
     }
 
-    const postList: PreviewProps[] = [
-        {
-            title: "lorem ipsum",
-            description: "stuff I'm writing idk",
-            date: "12/12/12"
-        },
-        {
-            title: "lorem ipsum 2",
-            description: "stuff I'm writing idk but again",
-            date: "12/12/14"
+    const [posts, setPosts] = useState<Post[]>([]);
+
+    useEffect(() => {
+        getPosts();
+    }, []);
+
+    async function getPosts() {
+        const { data, error } = await supabase
+            .from('posts')
+            .select('*')
+
+        if (error) {
+            console.error("Error", error)
+            return;
         }
-    ]
+
+        setPosts(data ?? []);
+
+    }
 
     return (
         <div>
@@ -45,8 +63,15 @@ export default function App() {
                     </div>
                 </div>
                 <Separator />
-                {postList.map((post) => {
-                    return <Preview title={post.title} description={post.description} date={post.date} />
+
+                {/* while loading */}
+                {posts.length === 0 &&
+                    <Spinner className="mx-auto mt-10 size-10" />
+                }
+
+                {/* show posts once done loading */}
+                {posts.map((post: any) => {
+                    return <Preview key={post.id} title={post.title} description={post.description} date={post.date} link={post.link} />
                 })}
             </div>
         </div>
