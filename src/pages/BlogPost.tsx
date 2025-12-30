@@ -39,6 +39,8 @@ export function BlogPost() {
                 return
             }
             setPost(data)
+
+            document.title = `${data.title} | Rowan's Blog`
         }
 
 
@@ -86,15 +88,14 @@ export function BlogPost() {
     if (!post) {
         return <Spinner className="mx-auto mt-10 size-10" />
     }
-
     return (
         <div className="container mx-auto mt-4 max-w-3xl p-2">
             <h1 className="text-4xl font-bold mt-4">{post.title}</h1>
             <p className="text-muted-foreground my-3">{dateToStr(timestamptzToDate(post.created_at))}</p>
             <Separator />
-            <div className="prose lg:prose-xl prose-gray dark:prose-invert">
+            <article className="mt-4 prose prose-gray dark:prose-invert">
                 <Markdown >{postMarkdown}</Markdown>
-            </div>
+            </article>
         </div>
     )
 }
