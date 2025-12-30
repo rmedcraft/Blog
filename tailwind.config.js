@@ -73,7 +73,11 @@ export default {
             typography: {
                 DEFAULT: {
                     css: {
-                        maxWidth: "100%"
+                        maxWidth: "100%",
+                        pre: {
+                            backgroundColor: "",
+                            padding: 0
+                        }
                     }
                 }
             }

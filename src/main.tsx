@@ -18,7 +18,7 @@ createRoot(document.getElementById('root') as any).render(
             <BrowserRouter>
                 <Toaster />
 
-                <div className="sticky top-0 w-full">
+                <div className="sticky top-0 w-full z-40">
                     <Navbar />
                 </div>
 

@@ -6,15 +6,20 @@ import { Spinner } from "@/components/ui/spinner";
 import { dateToStr, timestamptzToDate } from "@/utils/dateUtils";
 import { Separator } from "@/components/ui/separator";
 import Markdown from "react-markdown"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { materialLight, materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useTheme } from "@/components/ui/theme-provider";
 
 export function BlogPost() {
     // get the link parameter, i.e everything after the last slash. The variable name has to be the same as in
     const { postLink } = useParams();
 
-    const [post, setPost] = useState<Post>()
-    const [mdFile, setMdFile] = useState<string>('')
-    const [postMarkdown, setPostMarkdown] = useState<string>('');
+    // light/dark theme to update the md code syntax highlighting
+    const { theme } = useTheme()
 
+    const [post, setPost] = useState<Post>() // stores the post data from the database (everything except the actual md file)
+    const [mdFile, setMdFile] = useState<string>('') // stores the link to the md file in the database
+    const [postMarkdown, setPostMarkdown] = useState<string>(''); // stores the actual text of the md file
 
 
     useEffect(() => {
@@ -59,7 +64,6 @@ export function BlogPost() {
 
             if (!data) return
 
-            console.log(data)
             setMdFile(data.publicUrl)
         }
 
@@ -77,7 +81,6 @@ export function BlogPost() {
                 .then((response) => response.text())
                 .then((text) => {
                     setPostMarkdown(text);
-                    console.log(text)
                 });
         }
 
@@ -93,8 +96,27 @@ export function BlogPost() {
             <h1 className="text-4xl font-bold mt-4">{post.title}</h1>
             <p className="text-muted-foreground my-3">{dateToStr(timestamptzToDate(post.created_at))}</p>
             <Separator />
+
+            {/* adding code syntax highlighting https://www.kristianhannula.com/posts/rendering-markdown-files-with-react-typescript-vite-and-tailwind/ */}
             <article className="mt-4 prose prose-gray dark:prose-invert">
-                <Markdown >{postMarkdown}</Markdown>
+                <Markdown
+                    components={{
+                        code: ({ className, children, ...props }) => {
+                            const match = /language-(\w+)/.exec(className || '')
+                            return match ? (
+                                // style changes dependent on the theme selected, if the theme is system, detect the system theme
+                                <SyntaxHighlighter language={match[1]} style={theme == "dark" || (theme == "system" && window.matchMedia("(prefers-color-scheme: dark)").matches) ? materialDark : materialLight}>
+                                    {String(children).replace(/\n$/, '')}
+                                </SyntaxHighlighter>
+                            ) : (
+                                <code className={className} {...props}>
+                                    {children}
+                                </code>
+                            )
+                        },
+                    }}>
+                    {postMarkdown}
+                </Markdown>
             </article>
         </div>
     )
