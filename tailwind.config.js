@@ -77,6 +77,9 @@ export default {
                         pre: {
                             backgroundColor: "",
                             padding: 0
+                        },
+                        h1: {
+                            fontWeight: 600
                         }
                     }
                 }

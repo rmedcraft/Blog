@@ -9,6 +9,9 @@ import Markdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { materialLight, materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useTheme } from "@/components/ui/theme-provider";
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import 'katex/dist/katex.min.css'
 
 export function BlogPost() {
     // get the link parameter, i.e everything after the last slash. The variable name has to be the same as in
@@ -88,18 +91,20 @@ export function BlogPost() {
     }, [mdFile]);
 
     // while md is loading
-    if (!post) {
+    if (!postMarkdown || !post) {
         return <Spinner className="mx-auto mt-10 size-10" />
     }
     return (
         <div className="container mx-auto mt-4 max-w-3xl p-2">
-            <h1 className="text-4xl font-bold mt-4">{post.title}</h1>
+            <h1 className="text-5xl font-bold mt-4">{post.title}</h1>
             <p className="text-muted-foreground my-3">{dateToStr(timestamptzToDate(post.created_at))}</p>
             <Separator />
 
             {/* adding code syntax highlighting https://www.kristianhannula.com/posts/rendering-markdown-files-with-react-typescript-vite-and-tailwind/ */}
             <article className="mt-4 prose prose-gray dark:prose-invert">
                 <Markdown
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
                     components={{
                         code: ({ className, children, ...props }) => {
                             const match = /language-(\w+)/.exec(className || '')
