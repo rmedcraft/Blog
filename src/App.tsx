@@ -26,6 +26,8 @@ export default function App() {
 
     const [posts, setPosts] = useState<Post[]>([]);
 
+    document.title = "Home | Rowan's Blog"
+
     useEffect(() => {
         getPosts();
     }, []);

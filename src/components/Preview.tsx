@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Post } from "@/App";
 import { dateToStr, timestamptzToDate } from "@/utils/dateUtils";
+import { Link } from "react-router-dom";
 
 export function Preview(props: Post) {
     const date = timestamptzToDate(props.created_at)
@@ -24,10 +25,12 @@ export function Preview(props: Post) {
                 <p>{props.description}</p>
 
                 {/* read more */}
-                <Button variant={"link"} className="p-0 mt-1" onClick={() => window.location.assign(`${window.location.origin}/${props.link ?? encodeURI(props.title)}`)}>
-                    Read More
-                    <FaArrowRight />
-                </Button>
+                <Link to={`${window.location.origin}/${props.link ?? encodeURI(props.title)}`} className="h-full">
+                    <Button variant={"link"} className="p-0 mt-1" >
+                        Read More
+                        <FaArrowRight />
+                    </Button>
+                </Link>
             </div>
             <Separator />
         </>

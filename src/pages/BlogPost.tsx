@@ -51,7 +51,6 @@ export function BlogPost() {
             document.title = `${data.title} | Rowan's Blog`
         }
 
-
         getPost()
     }, [])
 
@@ -98,6 +97,7 @@ export function BlogPost() {
         <div className="container mx-auto mt-4 max-w-3xl p-2">
             <h1 className="text-5xl font-bold mt-4">{post.title}</h1>
             <p className="text-muted-foreground my-3">{dateToStr(timestamptzToDate(post.created_at))}</p>
+
             <Separator />
 
             {/* adding code syntax highlighting https://www.kristianhannula.com/posts/rendering-markdown-files-with-react-typescript-vite-and-tailwind/ */}
@@ -108,6 +108,8 @@ export function BlogPost() {
                     components={{
                         code: ({ className, children, ...props }) => {
                             const match = /language-(\w+)/.exec(className || '')
+
+                            // if theres a language match, return the syntax highlighted text. Otherwise just keep the regular code component
                             return match ? (
                                 // style changes dependent on the theme selected, if the theme is system, detect the system theme
                                 <SyntaxHighlighter language={match[1]} style={theme == "dark" || (theme == "system" && window.matchMedia("(prefers-color-scheme: dark)").matches) ? materialDark : materialLight}>

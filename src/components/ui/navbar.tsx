@@ -1,7 +1,13 @@
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
+import LogoDark from '@/assets/blog-logo-dark.svg?react'
+import LogoLight from '@/assets/blog-logo-light.svg?react'
+import { Link } from "react-router-dom";
+import { useTheme } from "./theme-provider";
 
 export default function Navbar(props: any) {
+    const { theme } = useTheme()
+
     return (
         <header
             className={cn(
@@ -9,12 +15,16 @@ export default function Navbar(props: any) {
                 props.className
             )}
         >
-            <div className="flex h-16 items-center justify-between gap-4">
-                <div className="container mx-auto">
-                    <ModeToggle></ModeToggle>
-                </div>
+            <div className="container mx-auto p-2 flex h-16 items-center justify-between gap-4">
+                <Link to={window.location.origin} className="h-full">
+                    {(theme == "dark" || (theme == "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) && <LogoDark className="h-full w-fit cursor-pointer" />}
+                    {(theme == "light" || (theme == "system" && window.matchMedia("(prefers-color-scheme: light)").matches)) && <LogoLight className="h-full w-fit cursor-pointer" />}
+                </Link>
+
+                <ModeToggle></ModeToggle>
             </div>
 
         </header>
     )
 }
+

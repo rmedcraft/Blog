@@ -8,8 +8,6 @@ import { AdminLogin } from './pages/AdminLogin';
 import Navbar from './components/ui/navbar';
 import { Toaster } from './components/ui/sonner';
 import { BlogPost } from './pages/BlogPost';
-import { createClient } from '@supabase/supabase-js';
-import { Database } from 'database.types';
 
 
 createRoot(document.getElementById('root') as any).render(
