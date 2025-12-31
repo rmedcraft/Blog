@@ -24,27 +24,28 @@ export default function App() {
         window.open(url, '_blank', 'noopener,noreferrer')
     }
 
+    document.title = "Home | Rowan's Blog"
     const [posts, setPosts] = useState<Post[]>([]);
 
-    document.title = "Home | Rowan's Blog"
 
     useEffect(() => {
+        async function getPosts() {
+            const { data, error } = await supabase
+                .from('posts')
+                .select('*')
+                .limit(10)
+
+            if (error) {
+                console.error("Error", error)
+                return;
+            }
+
+            setPosts(data ?? []);
+        }
+
         getPosts();
     }, []);
 
-    async function getPosts() {
-        const { data, error } = await supabase
-            .from('posts')
-            .select('*')
-
-        if (error) {
-            console.error("Error", error)
-            return;
-        }
-
-        setPosts(data ?? []);
-
-    }
 
     return (
         <div>
@@ -79,6 +80,6 @@ export default function App() {
                     return <Preview key={post.link} {...post} />
                 })}
             </div>
-        </div>
+        </div >
     )
 }

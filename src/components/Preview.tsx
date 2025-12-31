@@ -10,7 +10,7 @@ export function Preview(props: Post) {
 
     return (
         <>
-            <div className="w-5/6 mx-auto my-10">
+            <div className="w-5/6 mx-auto my-10 fade-in-100">
                 {/* title & date */}
                 <div className="flex justify-between gap-3 items-start mb-4">
                     <h1 className="text-3xl text-bold text-foreground align-text-bottom">

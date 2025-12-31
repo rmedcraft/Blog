@@ -17,8 +17,8 @@ export default function Navbar(props: any) {
         >
             <div className="container mx-auto p-2 flex h-16 items-center justify-between gap-4">
                 <Link to={window.location.origin} className="h-full">
-                    {(theme == "dark" || (theme == "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) && <LogoDark className="h-full w-fit cursor-pointer" />}
-                    {(theme == "light" || (theme == "system" && window.matchMedia("(prefers-color-scheme: light)").matches)) && <LogoLight className="h-full w-fit cursor-pointer" />}
+                    <LogoDark className="absolute h-full w-fit cursor-pointer transition-opacity opacity-0 dark:opacity-100 top-0" />
+                    <LogoLight className="absolute h-full w-fit cursor-pointer transition-opacity opacity-100 dark:opacity-0 top-0" />
                 </Link>
 
                 <ModeToggle></ModeToggle>
