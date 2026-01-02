@@ -27,17 +27,17 @@ createRoot(document.getElementById('root') as any).render(
 
                 <Routes>
                     <Route path="/" element={
-                        <Suspense fallback={<Spinner />}>
+                        <Suspense fallback={<Spinner className="mx-auto mt-10 size-10" />}>
                             <Home />
                         </Suspense>
                     } />
                     <Route path="/admin" element={
-                        <Suspense fallback={<Spinner />}>
+                        <Suspense fallback={<Spinner className="mx-auto mt-10 size-10" />}>
                             <Admin />
                         </Suspense>
                     } />
                     <Route path="/:postLink" element={
-                        <Suspense fallback={<Spinner />}>
+                        <Suspense fallback={<Spinner className="mx-auto mt-10 size-10" />}>
                             <Post />
                         </Suspense>
                     } />

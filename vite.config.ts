@@ -35,7 +35,8 @@ export default defineConfig(async ({ mode }) => {
         plugins: [react(), svgr(),
         sitemap({
             hostname: "https://blog.medcraft.dev",
-            dynamicRoutes
+            dynamicRoutes,
+            exclude: ["/admin"]
         })
         ],
         resolve: {
