@@ -15,9 +15,6 @@ export function Admin(props: any) {
         <div className="container mx-auto">
             <div className="mt-5 flex mx-auto">
                 <h1 className="text-4xl mb-4">Hi Rowan!</h1>
-                {/* <Button className="ms-auto me-4" onClick={() => window.location.assign(window.location.origin)}>
-                    Return to Blog
-                </Button> */}
                 <Button onClick={handleLogout} className="ms-auto" variant={"destructive"}>
                     Sign Out
                 </Button>

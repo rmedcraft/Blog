@@ -13,7 +13,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import 'katex/dist/katex.min.css'
 
-export function BlogPost() {
+export default function BlogPost() {
     // get the link parameter, i.e everything after the last slash. The variable name has to be the same as in
     const { postLink } = useParams();
 

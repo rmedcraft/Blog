@@ -6,7 +6,7 @@ import { Admin } from "./Admin";
 import { toast } from "sonner";
 import { supabase } from "@/App";
 
-export function AdminLogin() {
+export default function AdminLogin() {
     document.title = "Admin | Rowan's Blog"
 
     const [loading, setLoading] = useState(false);

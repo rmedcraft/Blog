@@ -1,13 +1,18 @@
-import { StrictMode } from 'react'
+import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { ThemeProvider } from "./components/ui/theme-provider";
-import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AdminLogin } from './pages/AdminLogin';
+// import { AdminLogin } from './pages/AdminLogin';
 import Navbar from './components/ui/navbar';
 import { Toaster } from './components/ui/sonner';
-import { BlogPost } from './pages/BlogPost';
+import { Spinner } from './components/ui/spinner';
+
+// bundle size gets big until we split the bundle with lazy routes
+// lazy routes only load the page after the user visits it, rather than including it in the bundle
+const Home = lazy(() => import("./App"))
+const Post = lazy(() => import("./pages/BlogPost"))
+const Admin = lazy(() => import("./pages/AdminLogin"))
 
 
 createRoot(document.getElementById('root') as any).render(
@@ -21,9 +26,21 @@ createRoot(document.getElementById('root') as any).render(
                 </div>
 
                 <Routes>
-                    <Route path="/" element={<App />} />
-                    <Route path="/admin" element={<AdminLogin />} />
-                    <Route path="/:postLink" element={<BlogPost />} />
+                    <Route path="/" element={
+                        <Suspense fallback={<Spinner />}>
+                            <Home />
+                        </Suspense>
+                    } />
+                    <Route path="/admin" element={
+                        <Suspense fallback={<Spinner />}>
+                            <Admin />
+                        </Suspense>
+                    } />
+                    <Route path="/:postLink" element={
+                        <Suspense fallback={<Spinner />}>
+                            <Post />
+                        </Suspense>
+                    } />
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>

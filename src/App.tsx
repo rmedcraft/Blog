@@ -9,8 +9,6 @@ import { Spinner } from "./components/ui/spinner";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "database.types";
 
-
-
 export const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);
 
 // Indexed access types: https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
@@ -33,6 +31,7 @@ export default function App() {
             const { data, error } = await supabase
                 .from('posts')
                 .select('*')
+                .order("created_at", { ascending: false })
                 .limit(10)
 
             if (error) {
@@ -52,7 +51,7 @@ export default function App() {
             <div className="container mx-auto p-8">
                 <div className="max-w-xl mx-auto mb-5">
                     <h1 className="text-6xl font-bold mb-5">Rowan's Really Cool Blog</h1>
-                    <p className="mb-2 text-muted-foreground">A place for me to talk about nerdy stuff I'm interested in. Proudly not vibe-coded</p>
+                    <p className="mb-2 text-muted-foreground">Updates about my projects, what I'm learning about, and other nerdy stuff I like. Proudly not vibe-coded</p>
                     <div className="flex gap-7">
                         <Button variant={"link"} className="p-0" onClick={() => openNewTab("https://github.com/rmedcraft")}>
                             <FiGithub />
