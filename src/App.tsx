@@ -16,6 +16,9 @@ export type Post = Database['public']['Tables']['posts']['Row']
 export type NewPost = Database['public']['Tables']['posts']['Insert']
 export type UpdatePost = Database['public']['Tables']['posts']['Update']
 
+
+// test test test
+
 export default function App() {
     // https://bobbyhadz.com/blog/react-open-link-in-new-tab    
     const openNewTab = (url: string) => {
