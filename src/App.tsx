@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import { Spinner } from "./components/ui/spinner";
 import { createClient } from "@supabase/supabase-js";
+//@ts-ignore
 import { Database } from "database.types";
 
 export const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY);

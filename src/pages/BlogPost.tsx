@@ -11,6 +11,7 @@ import { materialLight, materialDark } from "react-syntax-highlighter/dist/esm/s
 import { useTheme } from "@/components/ui/theme-provider";
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+//@ts-ignore
 import 'katex/dist/katex.min.css'
 
 export default function BlogPost() {
