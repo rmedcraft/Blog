@@ -95,7 +95,7 @@ export default function BlogPost() {
         return <Spinner className="mx-auto mt-10 size-10" />
     }
     return (
-        <div className="container mx-auto mt-4 max-w-3xl p-2">
+        <div className="container mx-auto mt-4 max-w-3xl p-5">
             <h1 className="text-5xl font-bold mt-4">{post.title}</h1>
             <p className="text-muted-foreground my-3">{dateToStr(timestamptzToDate(post.created_at))}</p>
 
